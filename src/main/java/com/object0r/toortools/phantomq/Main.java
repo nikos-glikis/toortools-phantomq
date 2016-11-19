@@ -19,7 +19,7 @@ public class Main
                 }
                 if (job.isSuccessful())
                 {
-                    System.out.println(job.getPhantomJsJobResult().getSourceCode());
+                    System.out.println(job.getPhantomJsJobResult().getContent());
                 }
             }
             catch (Exception e)
@@ -33,5 +33,6 @@ public class Main
             e.printStackTrace();
         }
 
+        System.exit(0);
     }
 }
