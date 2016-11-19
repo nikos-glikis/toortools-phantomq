@@ -59,7 +59,15 @@ public class PhantomJsJob
             if (line.contains("="))
             {
                 StringTokenizer st2 = new StringTokenizer(line, "=");
-                addPostParameter(st2.nextToken(), st2.nextToken());
+                if (st2.hasMoreTokens())
+                {
+                    addPostParameter(st2.nextToken(), st2.nextToken());
+                }
+                else
+                {
+                    addPostParameter(st2.nextToken(), "");
+                }
+
             }
         }
         this.setRequestPost();
