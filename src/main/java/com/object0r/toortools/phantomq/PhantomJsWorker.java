@@ -147,9 +147,9 @@ public class PhantomJsWorker extends Thread
                             {
                                 Cookie ck = new Cookie(entry.getKey(), entry.getValue());
                                 driver.manage().addCookie(ck);
-
                             }
                             driver.get(url);
+
                         }
                     }
                     else if (phantomJsJob.isRequestPost())
@@ -210,10 +210,12 @@ public class PhantomJsWorker extends Thread
                 PhantomJsJobResult phantomJsJobResult = new PhantomJsJobResult();
                 phantomJsJobResult.setContent(webElement.getText());
                 phantomJsJobResult.setSourceCode(driver.getPageSource());
+                phantomJsJobResult.setCookiesSet(driver.manage().getCookies());
                 phantomJsJob.setPhantomJsJobResult(phantomJsJobResult);
 
                 //String page = Utilities.readUrl(phantomJsJob.getUrl());
                 //phantomJsJob.setContent(page);
+
                 phantomJsJob.setStatusSuccess();
             }
             catch (Exception e)

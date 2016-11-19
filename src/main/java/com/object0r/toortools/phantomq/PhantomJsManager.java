@@ -87,6 +87,12 @@ public class PhantomJsManager extends Thread
     HashMap<String, PhantomJsJob> jobs = new HashMap<String, PhantomJsJob>();
     boolean useTor = false;
 
+    synchronized public PhantomJsJob addJob(PhantomJsJob job)
+    {
+        jobs.put(job.getUrl(), job);
+        return job;
+    }
+
     synchronized public PhantomJsJob addJob(String url)
     {
         if (jobs.containsKey(url))
@@ -103,14 +109,15 @@ public class PhantomJsManager extends Thread
 
     synchronized public PhantomJsJob addJob(String url, String body)
     {
-        if (jobs.containsKey(url))
+        String key = url + body;
+        if (jobs.containsKey(key))
         {
-            return jobs.get(url);
+            return jobs.get(key);
         }
         else
         {
-            PhantomJsJob phantomJsJob = new PhantomJsJob(url, body);
-            jobs.put(url, phantomJsJob);
+            PhantomJsJob phantomJsJob = new PhantomJsJob(key, body);
+            jobs.put(key, phantomJsJob);
             return phantomJsJob;
         }
     }
@@ -151,7 +158,7 @@ public class PhantomJsManager extends Thread
     {
         for (Map.Entry<String, PhantomJsJob> entry : jobs.entrySet())
         {
-            String url = entry.getKey();
+            String key = entry.getKey();
             PhantomJsJob phantomJsJob = entry.getValue();
             if (phantomJsJob.isPending())
             {
