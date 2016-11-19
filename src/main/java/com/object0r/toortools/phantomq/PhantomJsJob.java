@@ -108,12 +108,12 @@ public class PhantomJsJob
 
     public boolean isRequestPost()
     {
-        return this.request == REQUEST_ACTION_POST;
+        return this.request.equals(REQUEST_ACTION_POST);
     }
 
     public boolean isRequestGet()
     {
-        return this.request == REQUEST_ACTION_GET;
+        return this.request.equals(REQUEST_ACTION_GET);
     }
 
     public boolean isPending()

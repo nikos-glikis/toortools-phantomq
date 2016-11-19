@@ -9,7 +9,7 @@ public class Main
             PhantomJsManager manager = null;
             try
             {
-                manager = new PhantomJsManager("D:\\Projects\\proxymity\\bin\\phantomjs.exe", false);
+                manager = new PhantomJsManager(1,"D:\\Projects\\proxymity\\bin\\phantomjs.exe", false);
                 manager.start();
                 PhantomJsJob job = manager.addJob("http://www.bbc.co.uk/");
                 while (!job.isFinished())

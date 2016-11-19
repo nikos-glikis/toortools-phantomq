@@ -65,8 +65,9 @@ public class PhantomJsManager extends Thread
         return jsTimeout;
     }
 
-    public PhantomJsManager(boolean useTor) throws Exception
+    public PhantomJsManager(int workerCount, boolean useTor) throws Exception
     {
+        this.workersCount = workerCount;
         this.useTor = useTor;
         if (!verifyPhantomJs())
         {
@@ -74,8 +75,9 @@ public class PhantomJsManager extends Thread
         }
     }
 
-    public PhantomJsManager(String phantomJsPath, boolean useTor) throws Exception
+    public PhantomJsManager(int workerCount, String phantomJsPath, boolean useTor) throws Exception
     {
+        this.workersCount = workerCount;
         this.phantomJsPath = phantomJsPath;
         this.useTor = useTor;
         if (!verifyPhantomJs())
